@@ -1,0 +1,152 @@
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@font-face {
+	font-family: 'NetlifeSans';
+	src: url('fonts/Netlife-Regular.eot');
+	src: url('fonts/Netlife-Regular.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Netlife-Regular.woff') format('woff'),
+		url('fonts/Netlife-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'NetlifeSans';
+	src: url('fonts/Netlife-Bold.eot');
+	src: url('fonts/Netlife-Bold.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Netlife-Bold.woff') format('woff'), url('fonts/Netlife-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* For underlines */
+/* @font-face {
+  font-family: "NetlifeSansLining";
+  src: url("../fonts/Netlife-Lining.eot");
+  src: url("../fonts/Netlife-Lining.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Netlife-Lining.woff") format("woff"),
+    url("../fonts/Netlife-Lining.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+} */
+
+:root {
+	font-family: 'NetlifeSans', Arial, sans-serif;
+	--font-sans: 'NetlifeSans', Arial, sans-serif;
+	/* --font-sans-lining: "NetlifeSansLining", Arial, sans-serif; */
+	--pure-white: #ffffff;
+
+	--primary-color: #2ee57c;
+	--primary-color-dark: #1e8928;
+	--secondary-color: #ff577f;
+	--tertiary-color: #fff040;
+	--accent-color: #3c94ff;
+
+	--heading-color: #000000;
+
+	--text-color: #000000;
+	--background-color: #f6f6f6;
+
+	--column-width: 42rem;
+	--column-margin-top: 4rem;
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	background-color: var(--background-color);
+	font-size: 1.125rem;
+}
+
+#svelte {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+:global(.content > p) {
+  margin-bottom: 1rem;
+}
+
+h1,
+h2,
+p {
+	color: var(--heading-color);
+}
+
+/* Headings */
+h1,
+h2,
+h3 {
+	font-family: NetlifeSans, Arial, sans-serif;
+	font-weight: 400;
+	line-height: 1.1;
+	margin-top: 0;
+	margin-bottom: 0.4em;
+	-webkit-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+	font-feature-settings: 'ss03'; /* Includes curly N M W glyphs */
+}
+
+p {
+	line-height: 1.5;
+}
+
+a {
+	color: var(--text-color);
+  color: $color-dark;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+	color: $color-action;
+	text-decoration: underline;
+}
+
+h1 {
+	font-size: 2.5em;
+	font-weight: 500;
+	margin-top: 0;
+	margin-bottom: 1.6rem;
+	text-indent: -0.05em;
+	letter-spacing: -0.1rem;
+}
+@media (min-width: 720px) {
+	h1 {
+		font-size: 4rem;
+	}
+}
+
+h2 {
+	font-size: 3rem;
+}
+
+pre {
+	font-size: 16px;
+	font-family: var(--font-mono);
+	background-color: rgba(255, 255, 255, 0.45);
+	border-radius: 3px;
+	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
+	padding: 0.5em;
+	overflow-x: auto;
+	color: var(--text-color);
+}
+
+input,
+button {
+	font-size: inherit;
+	font-family: inherit;
+}
+
+button:focus:not(:focus-visible) {
+	outline: none;
+}
+
+@tailwind components;
+
+@tailwind utilities;

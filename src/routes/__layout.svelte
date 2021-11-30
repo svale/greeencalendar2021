@@ -1,0 +1,34 @@
+<script>
+	import Header from '$lib/header/Header.svelte';
+	import '../app.css';
+</script>
+
+<!-- <Header /> -->
+
+<main>
+	<slot />
+</main>
+
+<footer>
+	<p>24 grønner luker</p>
+</footer>
+
+<style>
+	main {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		max-width: 1024px;
+		margin: 0 auto;
+		box-sizing: border-box;
+	}
+
+	footer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+</style>
