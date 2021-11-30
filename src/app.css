@@ -32,7 +32,7 @@
   font-display: swap;
 } */
 
-:root {
+:global(:root){
 	font-family: 'NetlifeSans', Arial, sans-serif;
 	--font-sans: 'NetlifeSans', Arial, sans-serif;
 	/* --font-sans-lining: "NetlifeSansLining", Arial, sans-serif; */
