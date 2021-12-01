@@ -1,5 +1,8 @@
 <script>
 	import { crossfade, scale } from 'svelte/transition';
+	import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
 
   export const load = async ({ page }) => {
     console.log('page', page)
@@ -10,54 +13,73 @@
 		fallback: scale
 	});
 
-
   export let date
   export let day
   export let title
   export let content
+  export let selected = null
+  // export let colors
 
-  export let colors
-  let bacon = colors[0].includes(day)
-  let lemon = colors[1].includes(day)
-  let sky = colors[2].includes(day)
+  // let bacon = colors[0].includes(day)
+  // let lemon = colors[1].includes(day)
+  // let sky = colors[2].includes(day)
 
-  let selected = null;
+  let openable = day < date
 
-	function open(day) {
+	function close() {
+    dispatch('click', {id: null});
+  }
+
+  function open(day) {
     if(date >= day) {
-      selected = day;
+      console.log(day)
+      dispatch('click', {id: day});
+      goToTop()
     }
 	}
 
+  function goToTop() {
+    document.body.scrollIntoView();
+  }
 
 
 
 </script>
 
-  <button on:click|stopPropagation="{() => open(day)}"
+<button on:click|stopPropagation="{() => open(day)}"
   in:receive={{key:day}}
   out:send={{key:day}}
-  class="day day-{day}" class:bacon class:lemon class:sky >
-  <div class="door">
-    <div class="front">{day}</div>
-    {#if selected == day}
-      <article class="back" class:bacon class:lemon class:sky in:receive={{key:day}} out:send={{key:day}} on:click|stopPropagation="{() => selected = null}">
-        <header class="header">
-          <h1 class="">{title}</h1>
-        </header>
-        <div class="content">{@html content}</div>
-      </article>
-      {/if}
-  </div>
+  class="day day-{day}" class:openable
+>
+  <div class="front">{day}</div>
+  {#if selected == day}
+    <article class="back" in:receive={{key:day}} out:send={{key:day}}>
+      <header class="header">
+        <h1 class="">Luke {day}: {title}</h1>
+        <button class="close" on:click|stopPropagation="{close}">X</button>
+      </header>
+      <div class="content">{@html content}</div>
+    </article>
+  {/if}
 </button>
 
 <style>
 
 .header {
+  display: flex;
+  justify-content: space-between;
 	padding-top: 0.8rem;
-	flex-grow: 2;
 	width: 100%;
 	border-bottom: 2px solid #000;
+}
+
+.close {
+align-self: flex-start;
+font-size: var(--text-md);
+}
+.content {
+  margin-top: 1rem;
+  max-width: 65ch;
 }
 
 .front {
@@ -69,46 +91,34 @@
     position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
-		height: 100%;
+		width: 100vw;
+		height: 100vh;
 		overflow: hidden;
     z-index: 10000;
-    background-color: var(--primary-color);
+    background-color: var(--background-color);
     text-align: left;
     padding: 2rem;
 }
 
 
-:global(.content p) {
-  margin-top: 0.5rem  ;
-  margin-bottom: 1rem;
-}
-:global(.content a) {
-  margin-top: 0.5rem  ;
-  margin-bottom: 1rem;
-}
-
-.day.bacon,
-.day.bacon .back {
-	background-color: var(--secondary-color);
-}
-.day.lemon,
-.day.lemon .back {
-	background-color: var(--tertiary-color);
-}
-.day.sky,
-.day.sky .back {
-	background-color: var(--accent-color);
-}
-
 .day {
-	min-height: 3rem;
-	min-width: 5rem;
 	background-color: var(--primary-color);
 	border: 1px dashed #E6E6E6;
 	padding: 1rem;
 }
-	/* Calendar day positions and z-indexes */
+.day:hover {
+	background-color: var(--primary-color-dark);
+  cursor: wait;
+}
+
+.day.openable {
+  background-color: var(--primary-color-dark);
+}
+.day.openable:hover {
+  background-color: var(--primary-color);
+  cursor: pointer;
+}
+/* Calendar day positions and z-indexes */
 .day-1 {
   grid-area: day01;
   /* z-index: 11; */

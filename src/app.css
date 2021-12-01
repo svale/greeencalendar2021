@@ -1,5 +1,7 @@
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
+
+/* /greeencalendar2021/ */
 @font-face {
 	font-family: 'NetlifeSans';
 	src: url('fonts/Netlife-Regular.eot');
@@ -14,66 +16,45 @@
 	font-family: 'NetlifeSans';
 	src: url('fonts/Netlife-Bold.eot');
 	src: url('fonts/Netlife-Bold.eot?#iefix') format('embedded-opentype'),
-		url('fonts/Netlife-Bold.woff') format('woff'), url('fonts/Netlife-Bold.woff2') format('woff2');
+		url('fonts/Netlife-Bold.woff') format('woff'),
+		url('fonts/Netlife-Bold.woff2') format('woff2');
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
 }
 
-/* For underlines */
-/* @font-face {
-  font-family: "NetlifeSansLining";
-  src: url("../fonts/Netlife-Lining.eot");
-  src: url("../fonts/Netlife-Lining.eot?#iefix") format("embedded-opentype"),
-    url("../fonts/Netlife-Lining.woff") format("woff"),
-    url("../fonts/Netlife-Lining.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-} */
-
-:global(:root){
+:root{
 	font-family: 'NetlifeSans', Arial, sans-serif;
 	--font-sans: 'NetlifeSans', Arial, sans-serif;
-	/* --font-sans-lining: "NetlifeSansLining", Arial, sans-serif; */
+
+	--text-sm: clamp(18px, 1.6vw, 36.25px);
+	--text-md: clamp(26px, 2.5vw, 58px);
+	--text-lg: clamp(42px, 4.5vw, 116px);
+
 	--pure-white: #ffffff;
+	--text-color: #000000;
+	--heading-color: #000000;
+	--background-color: #f6f6f6;
 
 	--primary-color: #2ee57c;
 	--primary-color-dark: #1e8928;
 	--secondary-color: #ff577f;
 	--tertiary-color: #fff040;
 	--accent-color: #3c94ff;
-
-	--heading-color: #000000;
-
-	--text-color: #000000;
-	--background-color: #f6f6f6;
-
-	--column-width: 42rem;
-	--column-margin-top: 4rem;
 }
 
 body {
 	min-height: 100vh;
 	margin: 0;
 	background-color: var(--background-color);
-	font-size: 1.125rem;
+	font-size: clamp(18px, 1.6vw, 36.25px);
+
 }
 
 #svelte {
+	width: 100vh;
+	height: 100vh;
 	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-}
-
-:global(.content > p) {
-  margin-bottom: 1rem;
-}
-
-h1,
-h2,
-p {
-	color: var(--heading-color);
 }
 
 /* Headings */
@@ -91,8 +72,47 @@ h3 {
 	font-feature-settings: 'ss03'; /* Includes curly N M W glyphs */
 }
 
-p {
+h1 {
+	font-size: clamp(26px, 2.5vw, 58px);
+	font-weight: 500;
+	margin-top: 0;
+	margin-bottom: 1.6rem;
+	text-indent: -0.05em;
+	letter-spacing: -0.1rem;
+}
+
+h2 {
+	font-size: clamp(26px, 2.5vw, 58px);
+}
+
+li, p {
 	line-height: 1.5;
+	margin-bottom: 1rem;
+}
+ol, ul {
+	padding-left: 1.125em;
+	margin-top: 0;
+	margin-bottom: 1.6em;
+}
+ul>li:before {
+	content: "";
+	background-color: #29cb7e;
+	width: .5rem;
+	height: .5rem;
+	border-radius: 50%;
+	float: left;
+	margin-left: -1em;
+	margin-top: .55em;
+	display: inline-block;
+}
+
+
+:global(.content p) {
+  margin-top: 0.5rem  ;
+}
+:global(.content a) {
+  margin-top: 0.5rem  ;
+  margin-bottom: 1rem;
 }
 
 a {
@@ -106,24 +126,6 @@ a:hover,
 a:focus {
 	color: $color-action;
 	text-decoration: underline;
-}
-
-h1 {
-	font-size: 2.5em;
-	font-weight: 500;
-	margin-top: 0;
-	margin-bottom: 1.6rem;
-	text-indent: -0.05em;
-	letter-spacing: -0.1rem;
-}
-@media (min-width: 720px) {
-	h1 {
-		font-size: 4rem;
-	}
-}
-
-h2 {
-	font-size: 3rem;
 }
 
 pre {
@@ -148,5 +150,4 @@ button:focus:not(:focus-visible) {
 }
 
 @tailwind components;
-
 @tailwind utilities;

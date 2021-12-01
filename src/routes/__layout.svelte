@@ -9,26 +9,25 @@
 	<slot />
 </main>
 
-<footer>
-	<p>24 grønner luker</p>
-</footer>
-
 <style>
 	main {
-		flex: 1;
+		background-color: pink;
+		min-width: 100vw;
+		min-height: 100vh;
+		/* flex: 1;
 		display: flex;
 		flex-direction: column;
-		width: 100%;
+		width: 100vw;
 		max-width: 1024px;
 		margin: 0 auto;
-		box-sizing: border-box;
+		box-sizing: border-box; */
 	}
 
-	footer {
+	/* footer {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
+		justify-content: stretch;
+		align-items: stretch;
+	} */
 
 </style>
