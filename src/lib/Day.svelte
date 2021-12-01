@@ -25,6 +25,7 @@
   // let sky = colors[2].includes(day)
 
   let openable = day < date
+  let today = day === date
 
 	function close() {
     dispatch('click', {id: null});
@@ -49,8 +50,7 @@
 <button on:click|stopPropagation="{() => open(day)}"
   in:receive={{key:day}}
   out:send={{key:day}}
-  class="day day-{day}" class:openable
->
+  class="day day-{day}" class:openable class:today>
   <div class="front">{day}</div>
   {#if selected == day}
     <article class="back" in:receive={{key:day}} out:send={{key:day}}>
@@ -118,6 +118,11 @@ font-size: var(--text-md);
   background-color: var(--primary-color);
   cursor: pointer;
 }
+.day.today:hover {
+  background-color: var(--lemon-color);
+  cursor: pointer;
+}
+
 /* Calendar day positions and z-indexes */
 .day-1 {
   grid-area: day01;
