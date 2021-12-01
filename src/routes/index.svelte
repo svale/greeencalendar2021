@@ -53,7 +53,7 @@
 		height: 100vh;
 		position: relative;
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 		grid-template-rows: repeat(11, 1fr);;
 		grid-template-areas:
 			"day13 day05 day09"
