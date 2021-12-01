@@ -17,10 +17,10 @@
 	export let days;
 
 	let selected = null
-	let currentDate = new Date(2021, 11, 15); // NB TEST DATE
-  // let currentDate = new Date();
-	let randoms = Array.from({length: 9}, () => Math.floor(Math.random() * 23));
-	let colors = [randoms.splice(0,3), randoms.splice(0,3), randoms]
+	// let currentDate = new Date(2021, 11, 15); // NB TEST DATE
+  let currentDate = new Date();
+	// let randoms = Array.from({length: 9}, () => Math.floor(Math.random() * 23));
+	// let colors = [randoms.splice(0,3), randoms.splice(0,3), randoms]
 	let date = currentDate.getDate()
 
 	function handleKeydown(event) {
@@ -30,7 +30,6 @@
 	}
 	function handleClick(event) {
 		selected = event.detail.id
-		console.log('selected', selected);
 	}
 
 </script>
@@ -38,13 +37,13 @@
 <svelte:window on:keydown={handleKeydown}/>
 
 <svelte:head>
-	<title>Netlifes klodekalender</title>
+	<title>Netlifes klodekalender - luke {date}</title>
 </svelte:head>
 
 
 <div class="calendar-grid">
 	{#each days as day}
-			<Day date={date} {...day} selected={selected} colors={colors} on:click={handleClick} />
+			<Day date={date} {...day} selected={selected} on:click={handleClick} />
 	{/each}
 </div>
 
